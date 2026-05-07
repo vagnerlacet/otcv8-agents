@@ -87,3 +87,20 @@ Quando estiver escrevendo ou revisando agentes, leve em conta:
 
 O agente raiz já recebe instruções específicas de branch via configuração da
 sessão. Respeite a branch designada e não force-push.
+
+## Limpeza de branches
+
+Após **push para `main`** (direto ou via merge/fast-forward) **ou** após
+**abrir um PR** que substitua o trabalho local da branch, exclua a branch:
+
+- Local: `git branch -d <branch>` (use `-D` apenas se tiver certeza de que
+  os commits já estão em `main` ou no PR remoto).
+- Remota: `git push origin --delete <branch>`.
+
+Exceções (não excluir):
+- A branch ainda tem trabalho não publicado.
+- O PR foi aberto mas pode receber novos commits (espere o merge).
+- O usuário pediu explicitamente para manter.
+
+Sempre confirme com `git status` / `git log` antes de excluir, e relate ao
+usuário o que foi removido.
